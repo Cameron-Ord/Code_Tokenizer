@@ -19,7 +19,65 @@ token_patterns = [
 ]
 
 
-# Tokenize the input source code
+# Parser class
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.current_token_index = 0
+
+    def parse(self):
+        return self.expression()
+
+    def expression(self):
+        return self.term()
+
+    def term(self):
+        return self.factor()
+
+    def factor(self):
+        
+        token = self.current_token()
+        if token[0] == 'NUMBER':
+            self.consume_token()
+            print(token)
+            return float(token[1])
+        elif token[0] == 'IDENTIFIER':
+            self.consume_token()
+            print(token)
+            return token[1]
+        elif token[0] == 'OPERATOR':
+            self.consume_token()
+            print(token)
+            return token[1]
+        elif token[0] == 'PUNCTUATION':
+            self.consume_token()
+            print(token)
+            return token[1]
+        elif token[0] == 'STRING':
+            self.consume_token()
+            print(token)
+            return token[1]
+        elif token[0] =='WHITESPACE':
+            self.consume_token()
+            print(token)
+            return token[1]
+        else:
+            raise Exception('Invalid syntax')
+
+    def current_token(self):
+        return self.tokens[self.current_token_index]
+
+    def consume_token(self):
+        self.current_token_index += 1
+
+
+
+def parse_inputs(tokens):
+
+        parser = Parser(tokens)
+        result = parser.parse()
+        return result
+
 
 def tokenize(code):
     tokens=[]
@@ -48,32 +106,7 @@ def tokenize_user_input():
     user_input = input('enter code to tokenize: ')
     tokens = tokenize(user_input)
     
-    numbers = []
-    identifiers = []
-    operators = []
-    punctuation = []
-    strings = []
-    whitespace = []
-
-    for token_type, token_value in tokens:
-        if token_type == 'NUMBER':
-            numbers.append((token_type, token_value))
-        elif token_type == 'IDENTIFIER':
-            identifiers.append((token_type, token_value))
-        elif token_type == 'OPERATOR':
-            operators.append((token_type, token_value))
-        elif token_type == 'PUNCTUATION':
-            punctuation.append((token_type, token_value))
-        elif token_type == 'STRING':
-            strings.append((token_type, token_value))
-        elif token_type == 'WHITESPACE':
-            whitespace.append((token_type, token_value))
-
-    # Print or process the token lists if needed
-    print("Numbers:", numbers)
-    print("Identifiers:", identifiers)
-    print("Operators:", operators)
-    print("Punctuation:", punctuation)
-    print("Strings:", strings)
-        
+    result = parse_inputs(tokens)
+    print("Parsed result:", result)
+    
 tokenize_user_input()
