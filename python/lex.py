@@ -8,9 +8,11 @@ token_patterns = [
     
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),
     
-    ('OPERATOR', r'\+|-|\*|/'),
+    ('OPERATOR', r'\+|-|\*|/|='),
     
-    ('PUNCTUATION', r'[(), ;]'),
+    ('PUNCTUATION', r'[(), ;:]'),
+    
+    ('STRING', r'`[^`]*`|\'[^\']*\'|\"[^\"]*\"'),
     
     ('WHITESPACE', r'\s+')
     
