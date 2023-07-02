@@ -18,9 +18,6 @@ token_patterns = [
     
 ]
 
-
-
-
 def tokenize(code):
     tokens=[]
     position = 0
