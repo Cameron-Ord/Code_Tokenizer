@@ -8,9 +8,9 @@ token_patterns = [
     
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),
     
-    ('OPERATOR', r'\+|-|\*|/|=|<|>'),
+    ('OPERATOR', r'\+|-|\*|/|=|<|>|\$|\?|!'),
     
-    ('PUNCTUATION', r'[(),;:.]'),
+    ('PUNCTUATION', r'[(){},;:.\[\]]'),
     
     ('STRING', r'`[^`]*`|\'[^\']*\'|\"[^\"]*\"'),
     
@@ -53,6 +53,7 @@ def tokenize_user_input():
     operators = []
     punctuation = []
     strings = []
+    whitespace = []
 
     for token_type, token_value in tokens:
         if token_type == 'NUMBER':
@@ -65,6 +66,8 @@ def tokenize_user_input():
             punctuation.append((token_type, token_value))
         elif token_type == 'STRING':
             strings.append((token_type, token_value))
+        elif token_type == 'WHITESPACE':
+            whitespace.append((token_type, token_value))
 
     # Print or process the token lists if needed
     print("Numbers:", numbers)
