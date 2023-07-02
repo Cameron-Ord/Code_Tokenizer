@@ -10,7 +10,7 @@ token_patterns = [
     
     ('OPERATOR', r'\+|-|\*|/|=|<|>'),
     
-    ('PUNCTUATION', r'[(),;:]'),
+    ('PUNCTUATION', r'[(),;:.]'),
     
     ('STRING', r'`[^`]*`|\'[^\']*\'|\"[^\"]*\"'),
     
