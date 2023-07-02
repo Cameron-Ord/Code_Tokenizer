@@ -8,9 +8,9 @@ token_patterns = [
     
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),
     
-    ('OPERATOR', r'\+|-|\*|/|='),
+    ('OPERATOR', r'\+|-|\*|/|=|<|>'),
     
-    ('PUNCTUATION', r'[(), ;:]'),
+    ('PUNCTUATION', r'[(),;:]'),
     
     ('STRING', r'`[^`]*`|\'[^\']*\'|\"[^\"]*\"'),
     
@@ -48,8 +48,49 @@ def tokenize_user_input():
     user_input = input('enter code to tokenize: ')
     tokens = tokenize(user_input)
     
-    for token_type, token_value in tokens:
-        print(f"Token: {token_type}\tValue: {token_value}")
+    numbers = []
+    identifiers = []
+    operators = []
+    punctuation = []
+    strings = []
+    
+    position = 0
+    
+    while True:
+        
+        tokens_len = []
+            
+        for token_type, token_value in tokens:
+            if(token_type == 'NUMBER'):
+                numbers.append((token_type, token_value))
+                
+                tokens_len.append(0)
+            
+            elif(token_type == 'IDENTIFIER'):
+                identifiers.append((token_type,token_value))
+                
+                tokens_len.append(0)
+            elif(token_type == 'OPERATORS'):
+                operators.append((token_type, token_value))
+                
+                tokens_len.append(0)
+            elif(token_type == 'PUNCTUATION'):
+                punctuation.append((token_type, token_value))
+                
+                tokens_len.append(0)
+            elif(token_type == 'STRINGS'):
+                strings.append((token_type, token_value))
+           
+                tokens_len.append(0)
+                
+        position = len(tokens_len)   
+        
+        if(position == len(tokens_len)):
+            break 
+
+        
+                        
+            
         
         
 tokenize_user_input()
