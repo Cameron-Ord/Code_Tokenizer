@@ -53,44 +53,24 @@ def tokenize_user_input():
     operators = []
     punctuation = []
     strings = []
-    
-    position = 0
-    
-    while True:
-        
-        tokens_len = []
-            
-        for token_type, token_value in tokens:
-            if(token_type == 'NUMBER'):
-                numbers.append((token_type, token_value))
-                
-                tokens_len.append(0)
-            
-            elif(token_type == 'IDENTIFIER'):
-                identifiers.append((token_type,token_value))
-                
-                tokens_len.append(0)
-            elif(token_type == 'OPERATORS'):
-                operators.append((token_type, token_value))
-                
-                tokens_len.append(0)
-            elif(token_type == 'PUNCTUATION'):
-                punctuation.append((token_type, token_value))
-                
-                tokens_len.append(0)
-            elif(token_type == 'STRINGS'):
-                strings.append((token_type, token_value))
-           
-                tokens_len.append(0)
-                
-        position = len(tokens_len)   
-        
-        if(position == len(tokens_len)):
-            break 
 
-        
-                        
-            
-        
+    for token_type, token_value in tokens:
+        if token_type == 'NUMBER':
+            numbers.append((token_type, token_value))
+        elif token_type == 'IDENTIFIER':
+            identifiers.append((token_type, token_value))
+        elif token_type == 'OPERATOR':
+            operators.append((token_type, token_value))
+        elif token_type == 'PUNCTUATION':
+            punctuation.append((token_type, token_value))
+        elif token_type == 'STRING':
+            strings.append((token_type, token_value))
+
+    # Print or process the token lists if needed
+    print("Numbers:", numbers)
+    print("Identifiers:", identifiers)
+    print("Operators:", operators)
+    print("Punctuation:", punctuation)
+    print("Strings:", strings)
         
 tokenize_user_input()
